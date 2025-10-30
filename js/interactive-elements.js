@@ -153,7 +153,19 @@ function toggleCard(button) {
 
 // Utility function to toggle reveal section (can be called from HTML)
 function toggleReveal(button) {
-    button.click();
+    // Find the reveal section and toggle it directly
+    const section = button.closest('.reveal-section');
+    if (!section) return;
+
+    const isRevealed = section.getAttribute('data-reveal') === 'true';
+
+    if (isRevealed) {
+        section.setAttribute('data-reveal', 'false');
+        button.textContent = button.textContent.replace('▲', '▼').replace('Hide', 'Click to explore');
+    } else {
+        section.setAttribute('data-reveal', 'true');
+        button.textContent = button.textContent.replace('▼', '▲').replace('Click to explore', 'Hide');
+    }
 }
 
 // Add animation to metric changes
