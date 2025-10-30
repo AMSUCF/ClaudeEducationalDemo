@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal's Dilemma | Agentic AI & the Humanities</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/retro-theme.css">
+    <link rel="stylesheet" href="css/game.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+</head>
+<body class="game-page">
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Agentic AI & Humanities</a>
+            <ul class="nav-links">
+                <li><a href="what-is-agentic-ai.html">What is It?</a></li>
+                <li><a href="applications.html">Applications</a></li>
+                <li><a href="labor-equity.html">Labor & Equity</a></li>
+                <li><a href="game.html" class="active nav-highlight">Play the Game</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="game-container">
+        <!-- Game Introduction Screen -->
+        <div id="intro-screen" class="game-intro">
+            <h1>Principal's Dilemma</h1>
+            <h2>A Decision-Based Game About AI in Education</h2>
+
+            <div class="hero-description">
+                <p>You are the principal of a public high school. Over the next three years, you'll face mounting pressure to adopt AI systems in your school.</p>
+
+                <p>Your decisions will affect:</p>
+                <ul class="instructions-list">
+                    <li><strong>Student Equity:</strong> Are all students receiving fair opportunities?</li>
+                    <li><strong>Budget Health:</strong> Can you keep the school financially stable?</li>
+                    <li><strong>Test Scores:</strong> Are students meeting standardized benchmarks?</li>
+                    <li><strong>Teacher Morale:</strong> Are your teachers supported and empowered?</li>
+                    <li><strong>Curriculum Autonomy:</strong> Do you maintain control over what and how you teach?</li>
+                </ul>
+
+                <p><strong>There are no perfect choices.</strong> Every decision involves trade-offs, and external pressures will constrain your options. Your goal is to navigate these competing demands as thoughtfully as possible.</p>
+
+                <p>The game has multiple endings based on your choices and final metrics. Can you maintain your educational values under pressure?</p>
+            </div>
+
+            <button class="start-game-btn" onclick="startGame()">Begin Year 1</button>
+        </div>
+
+        <!-- Main Game Screen -->
+        <div id="game-screen" class="game-screen hidden">
+            <!-- Metrics Dashboard -->
+            <div class="metrics-dashboard">
+                <div class="metric">
+                    <div class="metric-label">Student Equity</div>
+                    <div class="metric-value" id="equity-value">70</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="equity-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Budget</div>
+                    <div class="metric-value" id="budget-value">$500K</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="budget-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Test Scores</div>
+                    <div class="metric-value" id="scores-value">65</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="scores-bar" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Teacher Morale</div>
+                    <div class="metric-value" id="morale-value">75</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="morale-bar" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Autonomy</div>
+                    <div class="metric-value" id="autonomy-value">80</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="autonomy-bar" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Year Display -->
+            <div class="year-display" id="year-display">Year 1 - Fall Semester</div>
+
+            <!-- P5.js Canvas for Scene Background -->
+            <div id="game-canvas-container"></div>
+
+            <!-- Narrative Section -->
+            <div class="narrative-section">
+                <h2 class="scenario-title" id="scenario-title">Loading...</h2>
+
+                <div class="scenario-text" id="scenario-text">
+                    <p>Scenario text will appear here...</p>
+                </div>
+
+                <div class="pressure-indicator hidden" id="pressure-indicator">
+                    Government pressure text will appear here.
+                </div>
+
+                <!-- Consequence Display (hidden until choice made) -->
+                <div class="consequence-display hidden" id="consequence-display">
+                    <h3>Consequences</h3>
+                    <p id="consequence-text"></p>
+                    <div class="metric-changes" id="metric-changes"></div>
+                    <button class="continue-btn" onclick="continueGame()">Continue</button>
+                </div>
+            </div>
+
+            <!-- Choices Section -->
+            <div class="choices-section" id="choices-section">
+                <p class="choices-prompt">What do you do?</p>
+                <div class="choice-buttons" id="choice-buttons">
+                    <!-- Choice buttons will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="ending-screen hidden">
+            <h1 class="ending-title" id="ending-title">Game Over</h1>
+
+            <div class="ending-description" id="ending-description">
+                <p>Your ending description will appear here...</p>
+            </div>
+
+            <div class="final-metrics">
+                <h3>Final Metrics</h3>
+                <div class="final-metric">
+                    <span>Student Equity:</span>
+                    <span id="final-equity">--</span>
+                </div>
+                <div class="final-metric">
+                    <span>Budget:</span>
+                    <span id="final-budget">--</span>
+                </div>
+                <div class="final-metric">
+                    <span>Test Scores:</span>
+                    <span id="final-scores">--</span>
+                </div>
+                <div class="final-metric">
+                    <span>Teacher Morale:</span>
+                    <span id="final-morale">--</span>
+                </div>
+                <div class="final-metric">
+                    <span>Curriculum Autonomy:</span>
+                    <span id="final-autonomy">--</span>
+                </div>
+            </div>
+
+            <div class="reflection-section">
+                <h3>Reflection Questions</h3>
+                <div id="reflection-questions">
+                    <ul>
+                        <li>What pressures most influenced your decisions?</li>
+                        <li>Which values did you prioritize? Which did you sacrifice?</li>
+                        <li>How did your experience compare to real-world pressures facing educators?</li>
+                        <li>What would you do differently if you played again?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="game-actions">
+                <button class="btn btn-primary" onclick="restartGame()">Play Again</button>
+                <a href="labor-equity.html" class="btn btn-secondary">Learn More About These Issues</a>
+                <a href="resources.html" class="btn btn-secondary">Discussion Questions</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>An educational project exploring AI and the humanities • <a href="index.html">Home</a></p>
+    </footer>
+
+    <!-- Save indicator -->
+    <div class="save-indicator" id="save-indicator">Progress saved</div>
+
+    <!-- Game Scripts -->
+    <script src="js/game/narrative-data.js"></script>
+    <script src="js/game/metrics-tracker.js"></script>
+    <script src="js/game/endings.js"></script>
+    <script src="js/p5-sketches/scene-office.js"></script>
+    <script src="js/game/game-engine.js"></script>
+</body>
+</html>

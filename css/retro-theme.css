@@ -1,0 +1,498 @@
+/* Retro Theme Enhancements */
+
+/* ==================== */
+/* Home Page Specific   */
+/* ==================== */
+
+.home-page {
+    position: relative;
+    overflow-x: hidden;
+}
+
+#p5-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-content {
+    background-color: rgba(247, 244, 234, 0.95);
+    padding: var(--spacing-xl);
+    border: 4px solid var(--dark-bg);
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.glitch-text {
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-teal);
+    margin-bottom: var(--spacing-md);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-orange);
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-heading);
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin: var(--spacing-md) 0;
+    line-height: 1.8;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.site-overview {
+    margin-top: var(--spacing-xl);
+}
+
+.site-overview h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--brown);
+}
+
+/* ==================== */
+/* Scanline Effect      */
+/* ==================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.03) 0px,
+        rgba(0, 0, 0, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ==================== */
+/* CRT Screen Effect    */
+/* ==================== */
+
+.game-container,
+.game-screen {
+    position: relative;
+}
+
+.game-screen::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+/* ==================== */
+/* Pixel Border Effect  */
+/* ==================== */
+
+.pixel-border {
+    border: 4px solid var(--dark-bg);
+    box-shadow:
+        inset 0 0 0 2px var(--cream),
+        inset 0 0 0 4px var(--dark-bg),
+        4px 4px 0 var(--dark-bg);
+}
+
+/* ==================== */
+/* Retro Button Styles  */
+/* ==================== */
+
+.retro-btn {
+    position: relative;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(to bottom, var(--primary-orange) 0%, var(--brown) 100%);
+    border: 3px solid var(--dark-bg);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.retro-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+.retro-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==================== */
+/* Discussion Questions */
+/* ==================== */
+
+.discussion-questions {
+    margin: var(--spacing-md) 0;
+}
+
+.question-category {
+    background-color: white;
+    border: 3px solid var(--primary-teal);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.question-category h3 {
+    color: var(--primary-teal);
+    border-bottom: 2px solid var(--primary-orange);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.question-category ol {
+    margin-left: var(--spacing-md);
+}
+
+.question-category li {
+    margin-bottom: var(--spacing-sm);
+    padding-left: var(--spacing-xs);
+}
+
+/* ==================== */
+/* Diamond Age Context  */
+/* ==================== */
+
+.book-context {
+    background-color: white;
+    padding: var(--spacing-lg);
+    border: 4px solid var(--brown);
+    margin: var(--spacing-md) 0;
+}
+
+.diamond-age-cases {
+    margin: var(--spacing-md) 0;
+}
+
+.da-case {
+    background-color: #f8f8f8;
+    border-left: 6px solid var(--primary-orange);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.da-case .theme {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: var(--cream);
+    font-style: italic;
+    border-left: 4px solid var(--primary-teal);
+}
+
+.manipulation-theme {
+    background-color: #fff3cd;
+    border: 3px solid var(--warning-red);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.manipulation-theme h3 {
+    color: var(--warning-red);
+}
+
+.warning-text {
+    font-weight: bold;
+    color: var(--warning-red);
+    margin-top: var(--spacing-sm);
+}
+
+/* ==================== */
+/* Reading Lists        */
+/* ==================== */
+
+.reading-list {
+    margin: var(--spacing-md) 0;
+}
+
+.reading-category {
+    background-color: white;
+    border: 3px solid var(--dark-bg);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.reading-category h3 {
+    color: var(--primary-teal);
+    margin-bottom: var(--spacing-sm);
+}
+
+.reading-category ul {
+    list-style: square;
+}
+
+.reading-category li {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ==================== */
+/* Economic Analysis    */
+/* ==================== */
+
+.economic-analysis {
+    margin: var(--spacing-md) 0;
+}
+
+.pressure-card {
+    background-color: white;
+    border: 3px solid var(--warning-red);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.pressure-card h3 {
+    color: var(--warning-red);
+}
+
+.pressure-card blockquote {
+    border-left: 4px solid var(--primary-orange);
+    padding-left: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.consequence-box {
+    background-color: #fff3cd;
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    border: 2px dashed var(--warning-red);
+}
+
+.metrics-shift {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+}
+
+.metrics-shift .devalued {
+    border: 3px solid var(--warning-red);
+    padding: var(--spacing-sm);
+    background-color: #ffe0e0;
+}
+
+.metrics-shift .valued {
+    border: 3px solid var(--success-green);
+    padding: var(--spacing-sm);
+    background-color: #e0ffe0;
+}
+
+/* ==================== */
+/* Labor Scenarios      */
+/* ==================== */
+
+.labor-scenarios {
+    margin: var(--spacing-md) 0;
+}
+
+.scenario-card {
+    background-color: white;
+    border: 3px solid var(--primary-teal);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.scenario-card h3 {
+    color: var(--primary-teal);
+    border-bottom: 2px solid var(--primary-orange);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ==================== */
+/* Crisis Examples      */
+/* ==================== */
+
+.crisis-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.crisis-card {
+    border-color: var(--warning-red);
+    background-color: #fff5f5;
+}
+
+.crisis-card h4 {
+    color: var(--warning-red);
+}
+
+.crisis-card blockquote {
+    background-color: white;
+    border-left: 4px solid var(--primary-orange);
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    font-family: var(--font-body);
+}
+
+.crisis-card .problem {
+    font-weight: bold;
+    color: var(--warning-red);
+}
+
+/* ==================== */
+/* Application Showcase */
+/* ==================== */
+
+.application-showcase {
+    margin: var(--spacing-md) 0;
+}
+
+/* ==================== */
+/* Hover Effects        */
+/* ==================== */
+
+.overview-card {
+    transition: all 0.3s ease;
+}
+
+.overview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.concept-card {
+    transition: all 0.3s ease;
+}
+
+.concept-card:hover {
+    border-color: var(--primary-orange);
+    transform: scale(1.02);
+}
+
+/* ==================== */
+/* Emoji Styling        */
+/* ==================== */
+
+h3:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================== */
+/* Project Note         */
+/* ==================== */
+
+.project-note {
+    background-color: #e8f4f8;
+    border-left: 6px solid var(--primary-teal);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    font-style: italic;
+}
+
+/* ==================== */
+/* Responsive Retro     */
+/* ==================== */
+
+@media (max-width: 768px) {
+    .glitch-text {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-content {
+        padding: var(--spacing-md);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .metrics-shift {
+        grid-template-columns: 1fr;
+    }
+
+    .crisis-examples {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==================== */
+/* Accessibility        */
+/* ==================== */
+
+.btn:focus,
+.expand-btn:focus,
+.reveal-btn:focus {
+    outline: 3px solid var(--primary-orange);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-orange);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 10000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ==================== */
+/* Print Styles         */
+/* ==================== */
+
+@media print {
+    body::before,
+    .game-screen::after {
+        display: none;
+    }
+
+    .main-nav,
+    .cta-buttons,
+    .next-section {
+        display: none;
+    }
+
+    .hero-content {
+        box-shadow: none;
+    }
+}
