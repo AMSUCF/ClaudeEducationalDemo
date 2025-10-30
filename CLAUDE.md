@@ -279,16 +279,17 @@ These are features, not bugs - the simplicity enables easy deployment, modificat
   - Modified files: `scene-office.js`, `game-engine.js`
 
 **Interactive Elements:**
-- Fixed expandable cards button functionality (applications.html)
-  - Root cause: HTML had inline onclick="toggleCard(this)" conflicting with event listeners
+- Fixed expandable cards button functionality (applications.html, what-is-agentic-ai.html)
+  - Root cause: HTML had inline onclick attributes conflicting with event listeners
+  - Fixed both expandable cards (onclick="toggleCard") and reveal buttons (onclick="toggleReveal")
   - Removed all inline onclick attributes from HTML
-  - Modified toggleCard() to directly toggle card state instead of calling button.click()
-  - Refactored to use shared toggle function for both button and card clicks
-  - Button click now properly expands/collapses content
-  - Card click (anywhere except button) also toggles expansion
+  - Modified toggleCard() and toggleReveal() to directly toggle state instead of calling button.click()
+  - Refactored to use shared toggle functions for both button and card/section clicks
+  - Button clicks now properly expand/collapse content
+  - Card/section area clicks also toggle expansion
   - Both methods work independently without conflicts
   - Keyboard accessible with Enter/Space key support
-  - Modified files: `interactive-elements.js`, `applications.html`
+  - Modified files: `interactive-elements.js`, `applications.html`, `what-is-agentic-ai.html`
 
 **Game UX Improvements:**
 - Added auto-scroll to top when new scenario loads
