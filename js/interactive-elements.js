@@ -16,32 +16,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Expandable application cards
 function setupExpandableCards() {
-    const expandButtons = document.querySelectorAll('.expand-btn');
+    // Shared toggle function
+    function toggleCardExpansion(card) {
+        const content = card.querySelector('.app-content');
+        const button = card.querySelector('.expand-btn');
 
+        if (!content || !button) return;
+
+        if (content.classList.contains('expanded')) {
+            content.classList.remove('expanded');
+            button.textContent = 'Explore +';
+        } else {
+            content.classList.add('expanded');
+            button.textContent = 'Close −';
+        }
+    }
+
+    // Setup button click handlers
+    const expandButtons = document.querySelectorAll('.expand-btn');
     expandButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.stopPropagation();
             const card = this.closest('.interactive-card');
-            const content = card.querySelector('.app-content');
-
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                this.textContent = 'Explore +';
-            } else {
-                content.classList.add('expanded');
-                this.textContent = 'Close −';
+            if (card) {
+                toggleCardExpansion(card);
             }
         });
     });
 
-    // Also make entire card clickable
+    // Setup card click handlers
     const interactiveCards = document.querySelectorAll('.interactive-card');
     interactiveCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const button = this.querySelector('.expand-btn');
-            if (button) {
-                button.click();
+        card.addEventListener('click', function(e) {
+            // Don't toggle if clicking the button itself (button has its own handler)
+            if (e.target.closest('.expand-btn')) {
+                return;
             }
+            toggleCardExpansion(card);
         });
     });
 }

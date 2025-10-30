@@ -279,10 +279,21 @@ These are features, not bugs - the simplicity enables easy deployment, modificat
   - Modified files: `scene-office.js`, `game-engine.js`
 
 **Interactive Elements:**
-- Verified expandable cards functionality (applications.html, what-is-agentic-ai.html)
-  - Both button click AND card click work to expand/collapse content
-  - Proper event handling with stopPropagation to prevent conflicts
+- Fixed expandable cards button functionality (applications.html, what-is-agentic-ai.html)
+  - Refactored to use shared toggle function for both button and card clicks
+  - Button click now properly expands/collapses content
+  - Card click (anywhere except button) also toggles expansion
+  - Both methods work independently without conflicts
   - Keyboard accessible with Enter/Space key support
+  - Modified file: `interactive-elements.js`
+
+**Game UX Improvements:**
+- Added auto-scroll to top when new scenario loads
+  - Automatically scrolls to game screen top when scenario changes
+  - Ensures users see metrics dashboard and new narrative content
+  - Smooth scroll behavior for better user experience
+  - Triggered on scenario load and when continuing from consequences
+  - Modified file: `game-engine.js`
 
 **Resources Page Enhancement:**
 - Added Diamond Age book cover image display

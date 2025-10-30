@@ -112,6 +112,9 @@ function loadScenario(index) {
 
     // Update metrics display
     metricsTracker.updateDisplay();
+
+    // Scroll to top of game screen so user sees the new scenario
+    scrollToGameTop();
 }
 
 // Render choice buttons
@@ -268,6 +271,14 @@ function hideElement(id) {
     const element = document.getElementById(id);
     if (element) {
         element.classList.add('hidden');
+    }
+}
+
+function scrollToGameTop() {
+    const gameScreen = document.getElementById('game-screen');
+    if (gameScreen) {
+        // Scroll to the game screen smoothly
+        gameScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
