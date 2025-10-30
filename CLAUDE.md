@@ -73,7 +73,10 @@ The site is configured for GitHub Pages deployment from the root directory:
 │   │   └── endings.js         # Multiple ending logic
 │   └── p5-sketches/
 │       ├── background-home.js # Home page animated background
-│       └── scene-office.js    # Game scene backgrounds
+│       └── scene-office.js    # Game scene backgrounds (office, classroom, staff room)
+├── assets/
+│   └── images/
+│       └── the-diamond-age.png # Book cover for resources page (to be added)
 └── CLAUDE.md                  # This file
 ```
 
@@ -255,3 +258,30 @@ Potential additions (not yet implemented):
 - GitHub Pages hosting constraints (static files only)
 
 These are features, not bugs - the simplicity enables easy deployment, modification, and accessibility.
+
+## Recent Updates & Bug Fixes
+
+### Bug Fixes (Latest)
+
+**Game Scene Rendering:**
+- Fixed books flashing different colors on every frame in `scene-office.js`
+  - Book colors are now initialized once at startup with a predefined palette
+  - Colors remain consistent during gameplay
+  - Books re-initialize colors only on window resize
+- Fixed bookshelf overlapping with desk
+  - Adjusted bookshelf position from `width * 0.05` to `width * 0.02`
+  - Reduced bookshelf width to ensure clear separation from desk
+
+**Interactive Elements:**
+- Verified expandable cards functionality (applications.html, what-is-agentic-ai.html)
+  - Both button click AND card click work to expand/collapse content
+  - Proper event handling with stopPropagation to prevent conflicts
+  - Keyboard accessible with Enter/Space key support
+
+**Resources Page Enhancement:**
+- Added Diamond Age book cover image display
+  - Image floats left with text wrapping on desktop
+  - Centered display on mobile devices
+  - Retro styling with chunky border, box shadow, and vintage filter
+  - Hover effect with subtle elevation
+  - Location: `assets/images/the-diamond-age.png` (to be added by user)

@@ -3,6 +3,7 @@
 
 let currentScene = 'office';
 let sceneTransition = 0;
+let bookColors = []; // Store book colors to prevent flashing
 
 // Setup is called once when p5 initializes
 function setup() {
@@ -10,6 +11,32 @@ function setup() {
     if (container) {
         let canvas = createCanvas(container.offsetWidth, 400);
         canvas.parent('game-canvas-container');
+    }
+
+    // Initialize book colors once
+    initializeBookColors();
+}
+
+// Initialize book colors at startup
+function initializeBookColors() {
+    bookColors = [];
+    const colorOptions = [
+        [139, 69, 19],    // Brown
+        [120, 40, 40],    // Dark red
+        [40, 60, 100],    // Dark blue
+        [60, 100, 60],    // Dark green
+        [100, 80, 40],    // Tan
+        [80, 60, 80],     // Purple
+        [100, 60, 60],    // Muted red
+        [60, 80, 100],    // Blue-gray
+        [80, 100, 80],    // Sage green
+        [120, 100, 60],   // Golden brown
+        [70, 70, 100],    // Blue-purple
+        [100, 70, 50]     // Orange-brown
+    ];
+
+    for (let i = 0; i < 12; i++) {
+        bookColors.push(random(colorOptions));
     }
 }
 
@@ -63,19 +90,24 @@ function drawOfficeScene() {
     rect(width * 0.15, height * 0.65, width * 0.1, height * 0.08);
     rect(width * 0.27, height * 0.67, width * 0.08, height * 0.06);
 
-    // Bookshelf
+    // Bookshelf (adjusted to not overlap with desk)
     fill(80, 50, 20);
-    rect(width * 0.05, height * 0.2, width * 0.15, height * 0.6);
+    rect(width * 0.02, height * 0.2, width * 0.12, height * 0.6);
 
-    // Books
+    // Books (using static colors from initialization)
     for (let i = 0; i < 12; i++) {
-        let bookX = width * 0.06 + random(-2, 2);
+        let bookX = width * 0.03;
         let bookY = height * 0.25 + (i % 4) * height * 0.12;
         let bookH = height * 0.1;
         let bookW = width * 0.012;
 
-        fill(random([200, 180, 160]), random([100, 120, 140]), random([80, 100, 120]));
-        rect(bookX + floor(i / 4) * width * 0.04, bookY, bookW, bookH);
+        // Use pre-initialized colors
+        if (bookColors[i]) {
+            fill(bookColors[i][0], bookColors[i][1], bookColors[i][2]);
+        } else {
+            fill(100, 70, 50); // Fallback color
+        }
+        rect(bookX + floor(i / 4) * width * 0.035, bookY, bookW, bookH);
     }
 
     // Subtle animation - time of day changes
@@ -206,5 +238,7 @@ function windowResized() {
     let container = document.getElementById('game-canvas-container');
     if (container) {
         resizeCanvas(container.offsetWidth, 400);
+        // Reinitialize book colors after resize
+        initializeBookColors();
     }
 }
