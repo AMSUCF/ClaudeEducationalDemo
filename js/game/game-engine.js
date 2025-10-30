@@ -38,6 +38,12 @@ function startGame() {
         initGame();
     }
 
+    // Initialize P5.js canvas now that game screen is visible
+    if (typeof initializeCanvas === 'function') {
+        // Use setTimeout to ensure DOM has updated
+        setTimeout(initializeCanvas, 50);
+    }
+
     loadScenario(currentScenarioIndex);
 }
 
@@ -46,6 +52,13 @@ function startGameFromSave() {
     hideElement('intro-screen');
     showElement('game-screen');
     gameState = 'playing';
+
+    // Initialize P5.js canvas now that game screen is visible
+    if (typeof initializeCanvas === 'function') {
+        // Use setTimeout to ensure DOM has updated
+        setTimeout(initializeCanvas, 50);
+    }
+
     metricsTracker.updateDisplay();
     loadScenario(currentScenarioIndex);
 }

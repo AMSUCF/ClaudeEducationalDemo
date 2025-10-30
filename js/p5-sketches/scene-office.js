@@ -4,17 +4,32 @@
 let currentScene = 'office';
 let sceneTransition = 0;
 let bookColors = []; // Store book colors to prevent flashing
+let canvasInitialized = false; // Track if canvas has been created
 
 // Setup is called once when p5 initializes
 function setup() {
-    let container = document.getElementById('game-canvas-container');
-    if (container) {
-        let canvas = createCanvas(container.offsetWidth, 400);
-        canvas.parent('game-canvas-container');
+    // Initialize book colors
+    initializeBookColors();
+
+    // Try to initialize canvas, but it may fail if container is hidden
+    initializeCanvas();
+}
+
+// Initialize the canvas (can be called multiple times safely)
+function initializeCanvas() {
+    // Don't re-initialize if already done
+    if (canvasInitialized) {
+        return;
     }
 
-    // Initialize book colors once
-    initializeBookColors();
+    let container = document.getElementById('game-canvas-container');
+
+    // Check if container exists and is visible with dimensions
+    if (container && container.offsetWidth > 0 && container.offsetHeight > 0) {
+        let canvas = createCanvas(container.offsetWidth, 400);
+        canvas.parent('game-canvas-container');
+        canvasInitialized = true;
+    }
 }
 
 // Initialize book colors at startup
@@ -42,6 +57,15 @@ function initializeBookColors() {
 
 // Draw is called continuously
 function draw() {
+    // Try to initialize canvas if not already done
+    if (!canvasInitialized) {
+        initializeCanvas();
+        // If still not initialized, skip drawing
+        if (!canvasInitialized) {
+            return;
+        }
+    }
+
     // Draw scene based on current scene type
     switch(currentScene) {
         case 'office':
@@ -235,8 +259,15 @@ function changeScene(newScene) {
 
 // Resize canvas when window resizes
 function windowResized() {
+    // If canvas not initialized yet, try to initialize it
+    if (!canvasInitialized) {
+        initializeCanvas();
+        return;
+    }
+
+    // Resize existing canvas
     let container = document.getElementById('game-canvas-container');
-    if (container) {
+    if (container && container.offsetWidth > 0) {
         resizeCanvas(container.offsetWidth, 400);
         // Reinitialize book colors after resize
         initializeBookColors();

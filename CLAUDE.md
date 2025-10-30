@@ -271,6 +271,12 @@ These are features, not bugs - the simplicity enables easy deployment, modificat
 - Fixed bookshelf overlapping with desk
   - Adjusted bookshelf position from `width * 0.05` to `width * 0.02`
   - Reduced bookshelf width to ensure clear separation from desk
+- Fixed P5.js canvas not appearing until window resize
+  - Canvas now properly initializes when game screen becomes visible
+  - Added `canvasInitialized` flag to track initialization state
+  - Game engine explicitly triggers canvas initialization after showing game screen
+  - Draw loop checks for canvas initialization before rendering
+  - Modified files: `scene-office.js`, `game-engine.js`
 
 **Interactive Elements:**
 - Verified expandable cards functionality (applications.html, what-is-agentic-ai.html)
