@@ -134,7 +134,21 @@ function addKeyboardSupport() {
 
 // Utility function to toggle card expansion (can be called from HTML)
 function toggleCard(button) {
-    button.click();
+    // Find the card and toggle it directly
+    const card = button.closest('.interactive-card');
+    if (!card) return;
+
+    const content = card.querySelector('.app-content');
+    if (!content) return;
+
+    // Toggle expansion
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        button.textContent = 'Explore +';
+    } else {
+        content.classList.add('expanded');
+        button.textContent = 'Close −';
+    }
 }
 
 // Utility function to toggle reveal section (can be called from HTML)
